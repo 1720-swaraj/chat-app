@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import { dbConnection } from "./dbConnection/dbConnection.js";
 import userRouter from "./routes/userRoutes.js";
+import messageRouter from "./routes/messageRoutes.js";
 import cookieParser from "cookie-parser";
 dbConnection();
 const app = express();
@@ -10,8 +11,9 @@ const PORT = process.env.PORT;
 
 //middleware
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 //routes
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/message", messageRouter);
 
 app.listen(PORT, () => console.log(`listning to ${PORT}`));
